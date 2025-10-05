@@ -5,7 +5,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your source code from version control
-                git 'https://github.com/khadarvallik98-cloud/Maven.git'
+                // Original: git 'https://github.com/khadarvallik98-cloud/Maven.git'
+                
+                // CORRECTED: Explicitly specify the branch
+                git branch: 'main', url: 'https://github.com/khadarvallik98-cloud/Maven.git'
             }
         }
         stage('Build') {
