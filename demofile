@@ -1,10 +1,11 @@
 pipeline {
     agent any
+    
     stages {
         stage('Checkout') {
             steps {
                 // Checkout your source code from version control
-                git 'https://github.com/your/repository.git'
+                git 'https://github.com/khadarvallik98-cloud/Maven.git'
             }
         }
         stage('Build') {
@@ -22,23 +23,25 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy your artifact, if necessary
+                echo 'Skipping deployment for this run.'
                 // Example: sh 'mvn deploy'
             }
         }
     }
-}
-    
 
+    // The 'post' block MUST be inside the 'pipeline' block, but outside the 'stages' block.
     post {
         success {
             // This block will be executed if the pipeline runs successfully
-            echo 'Pipeline executed successfully!'
+            echo 'Pipeline executed successfully! 🎉'
         }
         failure {
             // This block will be executed if the pipeline fails
-            echo 'Pipeline failed!'
+            echo 'Pipeline failed! 🛑 Check the logs above for the error.'
+        }
+        // You can add 'always' for cleanup tasks regardless of the result
+        always {
+            echo 'Pipeline run finished.'
         }
     }
-Note: Ensure you provide your Git repository URL on line7, save, and exit the page by clicking on ctrl+S to save and ctrl+X to exit
-} 
-
+}
